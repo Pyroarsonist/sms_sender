@@ -7,10 +7,18 @@
 import requests
 from time import sleep
 
+# by Pyroarsonist
 
-phone = input('enter phone: ')
-delay = int(input('delay: '))
-proxy = input('proxy or enter for none\n format: http://69.69.69.69:8080')
+PHONE_INPUT_STRING = 'Enter phone: '
+DELAY_INPUT_STRING = 'Delay: '
+PROXY_INPUT_STRING = """Proxy or enter for none
+Format: http://69.69.69.69:8080
+"""
+
+
+phone = input(PHONE_INPUT_STRING)
+delay = int(input(DELAY_INPUT_STRING))
+proxy = input(PROXY_INPUT_STRING)
 
 
 if not proxy:
